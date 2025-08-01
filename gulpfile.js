@@ -4,15 +4,15 @@ const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
 const browserSync = require("browser-sync").create();
 const clean = require("gulp-clean");
+const fileinclude = require("gulp-file-include");
 // const autoprefixer = require("gulp-autoprefixer");
 
 // работа со стилями
 async function styles() {
-  const autoprefixer = (await import("gulp-autoprefixer")).default; //были проблемы с автопрефиксом (эта строчка решилп эту проблему)
   return (
     src("src/scss/style.scss") // путь до файла
-      .pipe(autoprefixer({ overrideBrowserslist: ["last 2 versions"] }))
-      .pipe(concat("style.css")) // объеденяет все файлы в один (в случае с минификацией изменить на style.min.css)
+      // .pipe(autoprefixer({ overrideBrowserslist: ["last 2 versions"] })) НУЖНО РАЗОБРАТЬСЯ С АЫТОПРЕФИКСОМ
+      // .pipe(concat("style.css")) // объеденяет все файлы в один (в случае с минификацией изменить на style.min.css)
       .pipe(scss()) // преобразование scss в css
       // .pipe(scss({ style: "compressed" })) // преобразование scss в css и минифицирует его (если нужна минификация просто разкомментируй эту строку а строку выше закомментируй)
       .pipe(dest("src/css")) // путь где будет хранится уже готовый css
@@ -27,15 +27,23 @@ function scripts() {
       .pipe(concat("main.js")) // объеденяет все файлы в один (в случае с минификацией изменить на main.min.js)
       //  .pipe(uglify()) // минифицирует js
       .pipe(dest("src/js")) // путь где будет хранится уже готовый js
-      .pipe(browserSync.stream())
-  ); //обновляем браузер после каждого изменения
+      .pipe(browserSync.stream()) //обновляем браузер после каждого изменения
+  );
+}
+
+// работа со скриптами
+function html() {
+  return src("src/html/pages/*.html")
+    .pipe(fileinclude())
+    .pipe(dest("src"))
+    .pipe(browserSync.stream());
 }
 
 // отслеживание изменений в файлах
 function watching() {
   watch(["src/scss/modules/*.scss"], styles); //отслеживаем изменения в  scss и запускаем скрипт
   watch(["src/js/modules/*.js"], scripts); //отслеживаем изменения в js и запускаем скрипт
-  watch(["src/**/*.html"]).on("change", browserSync.reload); //отслеживаем изменения во всех html и перезагружаем браузер
+  watch(["src/html/**/*.html"], html); //отслеживаем изменения во всех html и перезагружаем браузер
 }
 // инициализируем и запускает локальный сервер
 function browsersync() {
@@ -57,7 +65,7 @@ function building() {
     [
       "src/css/style.css", // берем конкретный файл style.css (с минификацией добовляем min)
       "src/js/main.js", // берем конкретный файл main.js (с минификацией добовляем min)
-      "src/**/*.html", // берем все файлы html
+      "src/*.html", // берем все файлы html
     ],
     {
       base: "src", //Сохраняет исходную структуру папок относительно src/ Без этой опции файлы скопировались бы в dist/ напрямую (без вложенных папок css/, js/)
@@ -69,6 +77,7 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.watching = watching;
 exports.browsersync = browsersync;
+exports.html = html;
 exports.build = series(cleanDist, building);
 
-exports.default = parallel(styles, scripts, browsersync, watching);
+exports.default = parallel(styles, scripts, browsersync, html, watching);
