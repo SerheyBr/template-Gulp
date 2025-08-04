@@ -1,0 +1,39 @@
+@use "../base/variables" as *;
+
+.button {
+  padding: 18px 16px;
+  border-radius: $btn-border-radius-L;
+  background-color: grey;
+  transition: all 0.3s;
+  user-select: none;
+  display: inline-block;
+  width: auto;
+  &:hover {
+    opacity: 0.7;
+  }
+  &--primary {
+    color: #fff;
+    background-color: $btn-color-primary;
+    &:hover {
+    }
+  }
+  &--secondary {
+    color: #fff;
+    background-color: $btn-color-secondary;
+    &:hover {
+    }
+  }
+  &--outline {
+    border: 1px solid $btn-color-primary;
+    color: $btn-color-primary;
+    background-color: inherit;
+    &:hover {
+    }
+  }
+  &--ghost {
+    color: $btn-color-primary;
+    background-color: inherit;
+    &:hover {
+    }
+  }
+}

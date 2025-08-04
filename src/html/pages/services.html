@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,45 +16,9 @@
     <title>Template-vite.1.0.</title>
   </head>
   <body>
-    <header class="header">
-  <div class="container">
-    <div class="header__wrapper">
-      <img
-        src="assets/images/logo-plasholder.svg"
-        alt="logo"
-        width="80"
-        height="60"
-      />
-      <div>HEADER</div>
-      <nav>
-        <ul>
-          <li>
-            <a href="index.html">HOME</a>
-          </li>
-          <li>
-            <a href="about.html">ABOUT</a>
-          </li>
-          <li>
-            <a href="services.html">SERVICES</a>
-          </li>
-          <li>
-            <a href="contacts.html">CONTACTS</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
-    <main>page ABOUT</main>
-    <footer class="footer">
-  <div class="container">
-    <div class="footer__wrapper">
-      <div>FOOTER</div>
-    </div>
-  </div>
-</footer>
-
+    @@include('../components/header.html')
+    <main>page SERVISEC</main>
+    @@include('../components/footer.html')
     <script src="assets/libs/slim-select/slimselect.min.js"></script>
     <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>

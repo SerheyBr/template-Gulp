@@ -12,7 +12,7 @@ async function styles() {
   return (
     src("src/scss/style.scss") // путь до файла
       // .pipe(autoprefixer({ overrideBrowserslist: ["last 2 versions"] })) НУЖНО РАЗОБРАТЬСЯ С АЫТОПРЕФИКСОМ
-      // .pipe(concat("style.css")) // объеденяет все файлы в один (в случае с минификацией изменить на style.min.css)
+      .pipe(concat("style.css")) // объеденяет все файлы в один (в случае с минификацией изменить на style.min.css)
       .pipe(scss()) // преобразование scss в css
       // .pipe(scss({ style: "compressed" })) // преобразование scss в css и минифицирует его (если нужна минификация просто разкомментируй эту строку а строку выше закомментируй)
       .pipe(dest("src/css")) // путь где будет хранится уже готовый css
@@ -39,11 +39,24 @@ function html() {
     .pipe(browserSync.stream());
 }
 
+// копируем изображения
+function copyImg() {
+  return src("src/assets/images/**/*.*", { encoding: false }).pipe(
+    dest("dist/assets/images")
+  );
+}
+
+// копируем библиотеки
+function copyLibs() {
+  return src("src/assets/libs/**/*.*").pipe(dest("dist/assets/libs"));
+}
+
 // отслеживание изменений в файлах
 function watching() {
-  watch(["src/scss/modules/*.scss"], styles); //отслеживаем изменения в  scss и запускаем скрипт
-  watch(["src/js/modules/*.js"], scripts); //отслеживаем изменения в js и запускаем скрипт
+  watch(["src/scss/**/*.scss"], styles); //отслеживаем изменения в  scss и запускаем скрипт
+  watch(["src/js/modules/**/*.js"], scripts); //отслеживаем изменения в js и запускаем скрипт
   watch(["src/html/**/*.html"], html); //отслеживаем изменения во всех html и перезагружаем браузер
+  //   watch(["src/assets/images/**/*.{jpg,jpeg,png,gif,svg,webp}"], copyImg); //отслеживаем изменения во всех html и перезагружаем браузер
 }
 // инициализируем и запускает локальный сервер
 function browsersync() {
@@ -78,6 +91,7 @@ exports.scripts = scripts;
 exports.watching = watching;
 exports.browsersync = browsersync;
 exports.html = html;
-exports.build = series(cleanDist, building);
+// exports.copyImg = copyImg;
+exports.build = series(cleanDist, building, copyImg, copyLibs);
 
 exports.default = parallel(styles, scripts, browsersync, html, watching);
