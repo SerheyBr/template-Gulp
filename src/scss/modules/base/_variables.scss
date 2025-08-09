@@ -1,32 +1,16 @@
 // colors
 
-// ==============================================
 // Colors
-// ==============================================
-// button colors
-$btn-color-primary: #3a86ff;
-$btn-color-secondary: #da1e28;
-$btn-border-radius-L: 30px;
-$btn-border-radius-M: 15px;
-$btn-border-radius-S: 10px;
-
-// Brand colors\
-
 $color-primary: #3a86ff;
 $color-secondary: #da1e28;
-$color-white: #fff;
-$color-black: #000;
+$color-text: #000000;
 
-// ==============================================
-// Typography
-// ==============================================
-
+//fonts
 $font-family-base: "Inter";
 $font-family-heading: "Georgia", serif;
 $font-family-mono: "SFMono-Regular";
 
 $font-size-base: 16px;
-
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px
 $font-size-base: 1rem; // 16px
@@ -35,14 +19,6 @@ $font-size-lg: 1.25rem; // 20px
 $font-size-xl: 1.5rem; // 24px
 $font-size-xxl: 2rem; // 32px
 $font-size-xxxl: 2.5rem; // 40px
-
-// ==============================================
-// Borders
-// ==============================================
-
-$border-radius-15: 15px; // 16px
-$border-radius-30: 30px;
-$border-radius-circle: 50%;
 
 // ==============================================
 // Breakpoints
@@ -55,8 +31,17 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 $breakpoint-xxl: 1400px;
 
-// ==============================================
-// Container
-// ==============================================
-
-$container-max-width: 1200px;
+// презентация палитры
+.demo__list-color li {
+  text-align: center;
+  &:nth-child(1) {
+    background-color: $color-primary;
+  }
+  &:nth-child(2) {
+    background-color: $color-secondary;
+  }
+  &:nth-child(3) {
+    background-color: $color-text;
+    color: antiquewhite;
+  }
+}
