@@ -62,19 +62,9 @@ const swiper = new Swiper(".my-slider", {
 //     },
 //   },
 
-// Дополнительные эффекты
-//   effect: "slide", // 'slide', 'fade', 'cube', 'coverflow', 'flip'
-//   autoplay: {
-//     // Автопрокрутка
-//     delay: 3000, // Интервал между слайдами (мс)
-//     disableOnInteraction: false, // Продолжать после взаимодействия
-//   },
-// });
-
 /**
- * ИНСТРУКЦИЯ ПО ИСПОЛЬЗОВАНИЮ:
- *
- * 1. HTML-структура:
+
+ *  HTML-структура:
  *    <div class="swiper">
  *      <div class="swiper-wrapper">
  *        <div class="swiper-slide">Слайд 1</div>
@@ -87,16 +77,4 @@ const swiper = new Swiper(".my-slider", {
  *      <div class="swiper-button-next"></div>
  *    </div>
  *
- * 2. CSS-рекомендации:
- *    - Для .swiper задать фиксированную высоту
- *    - Для .swiper-slide указать width (фиксированный или процентный)
- *    - Для стрелок/пагинации использовать position: absolute
- *
- * 3. Частые проблемы:
- *    - Обрезание стрелок: добавить padding к .swiper
- *    - Конфликты стилей: повысить специфичность селекторов
- *    - Не работает loop: проверить количество слайдов (нужно минимум 2 дубликата)
- *
- * 4. Документация:
- *    https://swiperjs.com/swiper-api
  */

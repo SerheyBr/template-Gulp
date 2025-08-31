@@ -2,12 +2,12 @@
 
 // header
 .header {
-  background-color: rgba(255, 0, 0, 0.164);
+  background-color: rgba(113, 113, 113, 0.445);
   &__wrapper {
-    background-color: rgba(255, 217, 0, 0.164);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: #fff;
   }
   ul {
     display: flex;

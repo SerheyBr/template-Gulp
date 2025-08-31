@@ -3,13 +3,14 @@
 @use "modules/base/variables";
 
 // глобальные
-@use "modules/base/base";
+@use "modules/base/global";
 
 // компоненты
 
 @use "modules/components/buttons";
-@use "modules/components/custom-swiper";
+@use "modules/components/sliders";
 @use "modules/components/footer";
 @use "modules/components/header";
-@use "modules/components/forms";
-@use "modules/components/input-select";
+
+//тестовые стили (в дальнейшем удалить)
+@use "modules/components/test";
